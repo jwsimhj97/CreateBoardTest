@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+header{background:#8b8dc1;}
+header .container{height:120px; position:relative;}
+.logo{position: absolute; left: 0; top: 50%; transform: translateY(-50%); width:150px; height:70px;}
+.logo > a{text-align:center; display:block; font-size:50px; color:#fff;}
+.logo > a:hover {color:#aeb1f9; font-weight:500;}
+.hd_right{position: absolute; right: 0; top: 50%; transform: translateY(-50%); overflow:hidden;}
+.hd_right > div {margin-bottom:15px;}
+.hd_right > div:last-child {margin-bottom:0;}
+.logBox{width:100%; display:table; text-align:right;}
+.logBox .welcome_message{display:inline-block;}
+.logBox .log_state{display:inline-block;}
+.logBox .log_state > a{font-size:16px; color:#fff;}
+.logBox .welcome_message + .log_state{margin-left:10px;}
+.menuBox {}
+.menuBox ul{overflow:hidden;}
+.menuBox ul > li{float:left; margin:0 25px;}
+.menuBox ul > li:first-child {margin-left:0;}
+.menuBox ul > li:last-child {margin-right:0;}
+.menuBox ul > li > a{display:block; text-align:center; font-size:18px; color:#fff;}
+.menuBox ul > li > a:hover, .menuBox ul > li > a:active{color:#aeb1f9;}
+
+.container{width:1200px; margin:0 auto;}
+.contents{height:calc(100% - 280px); padding: 50px 0;}
+
+footer{background:#666;}
+footer .container{height:160px; position:relative;}
+footer .ft_box{position:absolute; left:0; top:50%; transform:translateY(-50%);}
+footer .ft_box > p{font-size:12px; color:#fff;}
+
+
+/* board table */
+.boardBox{min-height:450px;}
+.table{width:100%;}
+.table .thead{display:block;}
+.table .tbody{display:block; max-height: 430px; overflow-y: scroll; -ms-overflow-style: none;}
+.table .tbody::-webkit-scrollbar{display:none;}
+.table .tr{display:table; width:100%;}
+.table .tr > div{display:inline-block; text-align:center;padding: 7px 0;}
+.table .tr .th{border-bottom:1px solid #ddd;}
+.table .tr > div.th > p {font-size:15px;}
+.table .tr .td{}
+.table .tr > div.td > p {font-size:18px;}
+
+.w10{width:10%;}
+.w15{width:15%;}
+.w20{width:20%;}
+.w55{width:55%;}
+
+div + .btnBox{margin-top:60px;}
+.btnBox{text-align:center;}
+.btnBox > button{padding:0 15px; height:45px; line-height:45px;}
+.btn{border:1px solid #ddd; border-radius:8px; font-size:16px;}
+
+
+
+/* commonBoardBox */
+.commonBoardBox{}
+.commonBoardBox > form{}
+.commonBoardBox > form > div{margin-bottom:20px;}
+.commonBoardBox > form > div:last-child{margin-bottom:0;}
+.inputBox{}
+.inputBox .title{margin-bottom:5px;}
+.inputBox .title .tit{font-size:18px;}
+.inputBox .form-control {width: 100%; height:45px; line-height: 45px; text-indent: 10px; border:1px solid #999; border-radius:4px; font-size:16px;}
+.inputBox .form-control::placeholder{font-size:16px;}
+.inputBox textarea {resize: none;}

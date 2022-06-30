@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BoardDAO">
+	<resultMap type="board" id="boardResult">
+		<id property="num" column="num" />
+		<result property="title" column="TITLE" />
+		<result property="user_name" column="USER_NAME" />
+		<result property="content" column="CONTENT" />
+		<result property="date" column="DATE" />
+		<result property="file_name" column="FILE_NAME" />
+	</resultMap>
+
+	<insert id="insertBoard"> 	
+		<![CDATA[
+		INSERT INTO BOARD(TITLE, CONTENT, FILE_NAME, DATE, USER_NAME) VALUES( #{title}, #{content}, #{file_name}, now(), #{user_name})
+		]]>
+	</insert>
+	
+	<update id="updateBoard">
+		<![CDATA[
+		UPDATE BOARD SET TITLE = #{title}, USER_NAME= #{user_name}, CONTENT= #{content} WHERE NUM= #{num} 
+		]]>
+	</update>
+	
+	<update id="updateCnt">
+		<![CDATA[
+		UPDATE BOARD SET CNT = CNT+1 WHERE NUM= #{num} 
+		]]>
+	</update>
+	
+	<delete id="deleteBoard">
+		<![CDATA[
+		DELETE FROM BOARD WHERE NUM = #{num} 
+		]]>
+	</delete>
+
+	<select id="getBoard" resultType="board">
+		<![CDATA[
+		SELECT * FROM BOARD WHERE NUM= #{num} 
+		]]>
+	</select>
+	
+	<select id="getBoardList" resultMap="boardResult">
+		SELECT * FROM board WHERE 1=1
+	</select>
+	
+
+</mapper>
