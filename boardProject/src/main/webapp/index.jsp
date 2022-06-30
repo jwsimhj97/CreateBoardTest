@@ -9,7 +9,9 @@
 	<!-- container -->
 	<div class="container contents">
 		<div class="content">
-			<div class="cont">컨텐츠 내용입니다.</div>
+			<div class="cont">
+				<div class="imgfile"><img src="./img/img1.jpg"></div>
+			</div>
 		</div>
 	</div>
 	

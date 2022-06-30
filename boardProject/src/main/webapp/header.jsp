@@ -27,7 +27,7 @@ System.out.println(UserInfo);
 							<a href="login.jsp">로그인</a>
 						</c:if>
 						<c:if test="${UserInfo != null }">
-							<p>${UserInfo }님 환영합니다!</p>
+							<p class="welcome_text">${UserInfo }님 환영합니다!</p>
 							<a href="logout.do">로그아웃</a>
 						</c:if>
 					</div>

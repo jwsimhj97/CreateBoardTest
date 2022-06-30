@@ -37,6 +37,7 @@ public class BoardController {
 	// 글 등록완료
 		@RequestMapping(value = "/insertBoard.do", method=RequestMethod.POST)
 		public String insertInq(UserVO vo, BoardVO bvo, MultipartHttpServletRequest request) throws IOException{
+			System.out.println("글등록완료하고 게시판으로 이동함...1");
 			//파일 업로드 처리 
 			//board테이블에 컬럼추가하기 ALTER TABLE board ADD COLUMN filename varchar(200);
 			MultipartFile uploadFile = bvo.getUploadFile();
@@ -48,23 +49,28 @@ public class BoardController {
 				bvo.setFile_name(fileName);
 				if(!file.exists()) {
 					file.mkdirs();
+					System.out.println("글등록완료하고 게시판으로 이동함...2");
 				}
 				uploadFile.transferTo(file);
 			}
 
 			
 			boardService.insertBoard(bvo);
-			return "redirect:/getBoardList.do";
+			System.out.println("글등록완료하고 게시판으로 이동함...3");
+			return "getBoardList.do";
 		}
 		
 		// 글 등록페이지 이동하기
 		@RequestMapping(value = "/insertBoard.do")
 		public String InsertInq(UserVO vo, BoardVO bvo, HttpServletRequest request) throws Exception{
+			System.out.println("글등록페이지로 이동함...1");
 			
 			vo.setId((String) request.getSession().getAttribute("UserInfo"));
 			vo = userService.getUser(vo);
+			System.out.println("글등록페이지로 이동함...2");
 			request.setAttribute("name", vo.getName());
-			
+
+			System.out.println("글등록페이지로 이동함...3");
 			
 			return "insertBoard.jsp";
 		}
