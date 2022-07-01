@@ -22,16 +22,19 @@
 						%>
 						<form class="form-signin login_form" action="login.do" method="post">
 							<div class="form-group">
-								<label for="inputUserName" class="title">아이디</label> 
+								<label for="id" class="title">아이디</label> 
 								<input	type="text" class="form-control" placeholder="ID" name="id" value="${userVO.id}" autofocus>
 							</div>
 							<div class="form-group">
-								<label for="inputPassword" class="title">비번</label> 
+								<label for="pw" class="title">비번</label> 
 								<input 	type="password" class="form-control" placeholder="Password" name="pw" value="${userVO.pw}" >
 							</div>
 							
 							<div class="btnBox">
-								<button class="btn" type="submit">로그인</button>
+								<div class="btn_container">
+									<button class="btn" type="submit">로그인</button>
+									<button class="btn gray_btn" type="button" onclick="location.href='join.jsp'">회원가입</button>
+								</div>
 							</div>
 						</form>
 					</div>

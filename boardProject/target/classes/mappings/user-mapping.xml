@@ -6,7 +6,7 @@
 
 	<insert id="insertUser">
 		<![CDATA[
-		INSERT INTO USER VALUES ( #{id}, #{pw}, #{name}, #{role})
+		INSERT INTO USER VALUES ( #{id}, #{pw}, #{name}, 1)
 		]]>
 	</insert>
 	

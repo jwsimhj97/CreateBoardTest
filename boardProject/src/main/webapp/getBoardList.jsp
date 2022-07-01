@@ -2,6 +2,8 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.*,com.test.hi.board.BoardVO" %>
+<%@ page import="java.util.*,com.test.hi.user.UserVO" %>
+
 
 	<%@ include file="head.jsp" %>
 	<title>게시판 목록</title>
@@ -38,7 +40,9 @@
 				<!-- 게시판 e -->
 				
 				<div class="btnBox">
-					<button class="btn" onclick="location.href='insertBoard.jsp'">글 작성하기</button>
+					<div class="btn_container">
+						<button class="btn" onclick="location.href='insertBoard.jsp'">글 작성하기</button>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -8,6 +8,7 @@
 
 	<!-- container -->
 	<div class="container contents">
+	
 		<div class="commonBoardBox">
 			<form action="insertBoard.do" method="post" enctype="multipart/form-data">
 			    <div class="inputBox">
@@ -20,7 +21,7 @@
 			      <div class="title">
 			        <span class="tit">작성자</span>
 			      </div>
-			      <input type="text" class="form-control" name="name" value="${UserInfo }" readonly>      
+			      <input type="text" class="form-control" name="user_name" value="${UserInfo }" readonly>      
 			    </div>
 			    <div class="inputBox">
 			      <div class="title">
@@ -36,9 +37,12 @@
 			    </div>
 			    
 			    
+				
 				<div class="btnBox">
-					<button class="btn" id="conComplete" type="submit">글 작성하기</button>
-					<button class="btn" id="conList" type="button">글목록</button>
+					<div class="btn_container">
+						<button class="btn" id="conComplete" type="submit">작성완료</button>
+						<button class="btn gray_btn" id="conList" type="button">목록가기</button>
+					</div>
 				</div>
 			 </form>
 		</div>

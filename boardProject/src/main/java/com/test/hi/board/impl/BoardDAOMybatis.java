@@ -35,7 +35,7 @@ public class BoardDAOMybatis {
 		//글상세 조회
 		public BoardVO getBoard(BoardVO vo) {
 			System.out.println("===>JDBC로 getBoard() 기능처리");
-			mybatis.update("BoardDAO.updateCnt", vo);
+			/* mybatis.update("BoardDAO.updateCnt", vo); */
 			return (BoardVO) mybatis.selectOne("BoardDAO.getBoard", vo);
 		}
 		

@@ -24,11 +24,6 @@
 		]]>
 	</update>
 	
-	<update id="updateCnt">
-		<![CDATA[
-		UPDATE BOARD SET CNT = CNT+1 WHERE NUM= #{num} 
-		]]>
-	</update>
 	
 	<delete id="deleteBoard">
 		<![CDATA[

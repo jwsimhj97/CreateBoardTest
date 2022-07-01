@@ -34,7 +34,7 @@ public class BoardController {
 	
 	String realPath = "/resources/" ;
 	
-	// 글 등록완료
+	// 글 작성완료
 		@RequestMapping(value = "/insertBoard.do", method=RequestMethod.POST)
 		public String insertInq(UserVO vo, BoardVO bvo, MultipartHttpServletRequest request) throws IOException{
 			System.out.println("글등록완료하고 게시판으로 이동함...1");
@@ -61,19 +61,20 @@ public class BoardController {
 		}
 		
 		// 글 등록페이지 이동하기
-		@RequestMapping(value = "/insertBoard.do")
-		public String InsertInq(UserVO vo, BoardVO bvo, HttpServletRequest request) throws Exception{
-			System.out.println("글등록페이지로 이동함...1");
-			
-			vo.setId((String) request.getSession().getAttribute("UserInfo"));
-			vo = userService.getUser(vo);
-			System.out.println("글등록페이지로 이동함...2");
-			request.setAttribute("name", vo.getName());
-
-			System.out.println("글등록페이지로 이동함...3");
-			
-			return "insertBoard.jsp";
-		}
+		/*
+		 * @RequestMapping(value = "/insertBoard.do") public String InsertInq(UserVO vo,
+		 * BoardVO bvo, HttpServletRequest request) throws Exception{
+		 * System.out.println("글등록페이지로 이동함...1");
+		 * 
+		 * vo.setName((String) request.getSession().getAttribute("UserInfo")); vo =
+		 * userService.getUser(vo); System.out.println("글등록페이지로 이동함...2");
+		 * System.out.println(vo.getName()); request.setAttribute("user_name",
+		 * vo.getName());
+		 * 
+		 * System.out.println("글등록페이지로 이동함...3");
+		 * 
+		 * return "insertBoard.do"; }
+		 */
 	// 글 등록
 	/*
 	 * @RequestMapping(value = "/insertBoard.do") public String insertBoard(BoardVO
@@ -133,10 +134,10 @@ public class BoardController {
 			System.out.println("글 목록 페이지...1");
 			
 			model.addAttribute("boardList", boardService.getBoardList(bvo));
-			System.out.println("글 등록 페이지...2");
+			System.out.println("글 목록 페이지...2");
 			
-			vo.setId((String) request.getSession().getAttribute("UserInfo"));
-			System.out.println("글 등록 페이지...3");
+			vo.setName((String) request.getSession().getAttribute("UserInfo"));
+			System.out.println("글 목록 페이지...3");
 			return "getBoardList.jsp";
 		}
 		

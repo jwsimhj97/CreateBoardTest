@@ -5,7 +5,12 @@
 	<%@ include file="head.jsp" %>
 	
 <%	String sts = ""; %>
-<c:if test="${name ne board.user_name }"><% sts = "disabled"; %></c:if>
+<c:if test="${name ne board.user_name }">
+	<% 
+		sts = "disabled"; 
+		System.out.println(sts);
+	%>
+</c:if>
 
 	<title>게시판 상세보기</title>
 	<!-- header -->
@@ -16,6 +21,12 @@
 		<div class="commonBoardBox">
 			<form action="updateBoard.do" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="num" value="${board.num }"/>
+				<div class="inputBox">
+			      <div class="title">
+			        <span class="tit">작성자</span>
+			      </div>
+			      <input type="text" class="form-control" name="title" value="${board.user_name }" <%=sts %> readonly>      
+			    </div>
 				<div class="inputBox">
 			      <div class="title">
 			        <span class="tit">제목</span>
@@ -46,11 +57,14 @@
 			    </div>
 			    
 			    
+			    
 				<div class="btnBox">
-					<button class="btn" type="submit" <%=sts %>>글 수정</button>
-					<button class="btn" id="conWrite" type="button" <%=sts %>>글쓰기</button>
-					<button class="btn" id="conDel" type="button" <%=sts %>>글삭제</button>
-					<button class="btn" id="conList" type="button">글목록</button>
+					<div class="btn_container">
+						<button class="btn" type="submit" <%=sts %>>글 수정</button>
+						<button class="btn gray_btn" id="conWrite" type="button" <%=sts %>>글쓰기</button>
+						<button class="btn deepGray_btn" id="conDel" type="button" <%=sts %>>글삭제</button>
+						<button class="btn purpGray_btn" id="conList" type="button">글목록</button>
+					</div>
 				</div>
 			</form>
 		</div>
@@ -63,6 +77,8 @@
 	function downloadFile(file_name){
 		window.location='download.do?file_name='+file_name;
 	}
+	
+	
 	</script>
 </body>
 </html>

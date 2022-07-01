@@ -48,10 +48,16 @@ footer .ft_box > p{font-size:12px; color:#fff;}
 .w20{width:20%;}
 .w55{width:55%;}
 
+/* btns */
 div + .btnBox{margin-top:60px;}
-.btnBox{text-align:center;}
-.btnBox > button{padding:0 15px; height:45px; line-height:45px;}
-.btn{border:1px solid #ddd; border-radius:8px; font-size:16px;}
+.btnBox{text-align:center; overflow:hidden;}
+.btn_container {display: inline-block;}
+.btn_container > button{float:left; padding:0 15px; height:45px; line-height:45px; min-width: 160px;}
+.btn_container > button + button {margin-left:10px;}
+.btn{border:1px solid #ddd; border-radius:8px; font-size:16px; color:#666;}
+.gray_btn{background:#666; border:1px solid #666; color:#fff !important;}
+.deepGray_btn{background:#3e3a3a; border:1px solid #3e3a3a; color:#fff !important;}
+.purpGray_btn{background:#b6b8d7; border:1px solid #b6b8d7; color:#fff !important;}
 
 
 
@@ -80,9 +86,13 @@ div + .btnBox{margin-top:60px;}
 .login_cont h3{font-size: 24px;}
 .login_cont h3 + form{margin-top: 50px;}
 
+.login_form > p {font-size: 24px; margin-bottom: 10px;}
+.login_form > p + p {margin-bottom:0;}
+.login_form > p + .btnBox {margin-top: 50px;}
 .login_form > div{margin-bottom: 10px; }
 .login_form > div:last-child{margin-bottom: 0; }
 .form-group {display:block; overflow:hidden;}
-.form-group > label {float:left; width:30%; font-size:18px;}
+.form-group > label {float:left; width:30%; font-size:18px; cursor:revert;}
 .form-group > .form-control {float:left; width:70%; text-indent:10px; border:1px solid #ccc; border-radius:4px;}
 .form-group * {height: 45px; line-height:45px; font-size:16px; text-align:left;}
+

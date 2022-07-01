@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +27,25 @@ public class UserController extends HttpServlet{
 
 	@Autowired
 	private UserService userService;
+	
+//	join  insertUser
+	@RequestMapping(value="/join.do", method=RequestMethod.POST)
+	public String join(UserVO vo, Model model) throws InterruptedException {
+		System.out.println("Controller >> join");
+		model.addAttribute("user",vo);
+		System.out.println(vo.toString());
+		
+		return "join_welcome.jsp";
+	}	
+	
+	@RequestMapping(value="/join_welcome.do", method=RequestMethod.POST)
+	public String join_welcome(@ModelAttribute("user") UserVO vo, Model model) {
+		System.out.println("Controller >> Join process done. Redircet to Login");
+		System.out.println(vo.toString());
+		userService.insertUser(vo);
+		
+		return "login.jsp";
+	}
 	
 	
 	// LOGIN-get
@@ -58,7 +79,7 @@ public class UserController extends HttpServlet{
 	      return "login.jsp";
 	   }
 	
-	  
+	  //로그인페이지 이동
 	   @RequestMapping(value="login.do", method=RequestMethod.POST)
 		public String login(UserVO vo, HttpSession session,
 				HttpServletRequest request, HttpServletResponse response, 
@@ -120,7 +141,7 @@ public class UserController extends HttpServlet{
 		  System.out.println(vo);
 		  
 		  String UserInfo = (String) session.getAttribute("UserInfo");
-		  vo.setId(UserInfo);
+		  vo.setName(UserInfo);
 		  userService.getUser(vo);
 		  System.out.println(vo);
 		  
