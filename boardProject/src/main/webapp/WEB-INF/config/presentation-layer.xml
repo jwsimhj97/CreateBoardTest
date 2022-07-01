@@ -7,11 +7,12 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 	
+		<context:component-scan base-package="com.test.hi"></context:component-scan>
 		<context:component-scan base-package="com.test.view"></context:component-scan>
 	
 	
 		<!-- 파일업로드 설정 -->
 		<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-			<property name="maxUploadSize" value="5000000" /><!-- 5MB -->
-		</bean>
+			<property name="maxUploadSize" value="50000000" /><!-- 50MB -->
+		</bean>	
 </beans>
