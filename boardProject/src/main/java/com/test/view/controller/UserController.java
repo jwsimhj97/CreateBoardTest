@@ -56,7 +56,7 @@ public class UserController extends HttpServlet{
 	         session.invalidate();
 	      }
 	      
-	    //ÄíÅ°°¡ Á¸ÀçÇÏ¸é ÀÌÀü¿¡ ÀúÀåÇØ³õÀº session_id¸¦ °¡Á®¿Í¼­ 
+	    //ì¿ í‚¤ê°€ ì¡´ì¬í•˜ë©´ ì´ì „ì— ì €ì¥í•´ë†“ì€ session_idë¥¼ ê°€ì ¸ì™€ì„œ 
 		Cookie cookie = WebUtils.getCookie(request,"loginCookie");
 		if(cookie!=null) {
 			System.out.println("if(cookie!=null)");
@@ -65,28 +65,28 @@ public class UserController extends HttpServlet{
 			System.out.println(session_id);
 			
 			//selectSession: SELECT * FROM USER_TABLE WHERE SESSION_ID=#{session_Id} and LIMIT_DATE > now()
-			//À¯È¿±â°£ÀÌ ³²¾ÆÀÖÀ¸¸é¼­ ÇØ´ç sessionID¸¦ °¡Áö´Â »ç¿ëÀÚ Á¤º¸ Á¶È¸
+			//ìœ íš¨ê¸°ê°„ì´ ë‚¨ì•„ìˆìœ¼ë©´ì„œ í•´ë‹¹ sessionIDë¥¼ ê°€ì§€ëŠ” ì‚¬ìš©ì ì •ë³´ ì¡°íšŒ
 			UserVO vo=userService.selectSession(session_id);
 			if(vo!=null) {
 				System.out.println("if(vo!=null) vo: "+vo);
 				UserVO user = userService.getUser(vo);
 		        session = request.getSession();
 				session.setAttribute("UserInfo", user.getName());
-				System.out.println("·Î±×ÀÎ¼º°ø get"); 
+				System.out.println("ë¡œê·¸ì¸ì„±ê³µ get"); 
 	            return "redirect:index.jsp";
 			}
 		}
 	      return "login.jsp";
 	   }
 	
-	  //·Î±×ÀÎÆäÀÌÁö ÀÌµ¿
+	  //ë¡œê·¸ì¸í˜ì´ì§€ ì´ë™
 	   @RequestMapping(value="login.do", method=RequestMethod.POST)
 		public String login(UserVO vo, HttpSession session,
 				HttpServletRequest request, HttpServletResponse response, 
 				@RequestParam("pw") String pw) {
 			System.out.println("Controller >> login");
 	        System.out.println(vo);
-	      //È¸¿ø°¡ÀÔ ½Ã »ç¿ëÇß´ø user¼¼¼ÇÀÌ Á¸ÀçÇÑ´Ù¸é »èÁ¦
+	      //íšŒì›ê°€ì… ì‹œ ì‚¬ìš©í–ˆë˜ userì„¸ì…˜ì´ ì¡´ì¬í•œë‹¤ë©´ ì‚­ì œ
 			if(session.getAttribute("user")!= null) {
 		         System.out.println("login-post//session(user) delete");
 		         session.invalidate();
@@ -96,36 +96,36 @@ public class UserController extends HttpServlet{
 	        session = request.getSession();
 	        if(user != null) {
 	        	session.setAttribute("UserInfo", user.getName());
-	            //»ç¿ëÀÚ°¡ ÀÚµ¿·Î±×ÀÎÀ» Ã¼Å©ÇßÀ»½Ã¿¡ ½ÇÇà
+	            //ì‚¬ìš©ìê°€ ìë™ë¡œê·¸ì¸ì„ ì²´í¬í–ˆì„ì‹œì— ì‹¤í–‰
 	            if(vo.isAutoLogin()) {
 	                System.out.println("autoLogin if");
-	                //ÀÚµ¿·Î±×ÀÎ ±â°£ ¼³Á¤
-	                long second = 60 * 60 * 24 * 90; //3°³¿ùµÚ (ÃÊ)
-	                //ÄíÅ°»ı¼º
+	                //ìë™ë¡œê·¸ì¸ ê¸°ê°„ ì„¤ì •
+	                long second = 60 * 60 * 24 * 90; //3ê°œì›”ë’¤ (ì´ˆ)
+	                //ì¿ í‚¤ìƒì„±
 	                Cookie cookie = new Cookie("loginCookie",session.getId());
 	                System.out.println("session.getId(): "+session.getId());
-	                cookie.setPath("/"); // ÄíÅ°¸¦ Ã£À» °æ·Î¸¦ ÄÁÅØ½ºÆ® °æ·Î(»ç¿ëÀÚ PC¿¡¼­ ÄíÅ°¸¦ º¸³»´Â °æ·Î°¡ "/" ·Î ¼³Á¤ÇÔÀ¸·Î½á contextPath ÀÌÇÏÀÇ ¸ğµç ¿äÃ»¿¡ ´ëÇØ¼­ ÄíÅ°¸¦ Àü¼ÛÇÒ ¼ö ÀÖµµ·Ï ¼³Á¤)
+	                cookie.setPath("/"); // ì¿ í‚¤ë¥¼ ì°¾ì„ ê²½ë¡œë¥¼ ì»¨í…ìŠ¤íŠ¸ ê²½ë¡œ(ì‚¬ìš©ì PCì—ì„œ ì¿ í‚¤ë¥¼ ë³´ë‚´ëŠ” ê²½ë¡œê°€ "/" ë¡œ ì„¤ì •í•¨ìœ¼ë¡œì¨ contextPath ì´í•˜ì˜ ëª¨ë“  ìš”ì²­ì— ëŒ€í•´ì„œ ì¿ í‚¤ë¥¼ ì „ì†¡í•  ìˆ˜ ìˆë„ë¡ ì„¤ì •)
 	                cookie.setMaxAge((int)second);
 	                response.addCookie(cookie);
 	                
-	                //3°³¿ùµÚÀÇ ¹Ğ¸®ÃÊ¸¦ ³¯Â¥·Î º¯È¯
+	                //3ê°œì›”ë’¤ì˜ ë°€ë¦¬ì´ˆë¥¼ ë‚ ì§œë¡œ ë³€í™˜
 	                long millis = System.currentTimeMillis() + (second * 1000); 
 	                Date limitDate = new Date(millis);
 	                System.out.println(limitDate);
 	                
-	                //DB¿¡ ¼¼¼Ç¾ÆÀÌµğ,ÄíÅ°¸¸·á³¯Â¥,È¸¿ø ¾ÆÀÌµğ Àü´Ş
+	                //DBì— ì„¸ì…˜ì•„ì´ë””,ì¿ í‚¤ë§Œë£Œë‚ ì§œ,íšŒì› ì•„ì´ë”” ì „ë‹¬
 	                
 	                userService.autoLogin(session.getId(),limitDate,user.getId(), user.getName());
 	            }
 	            if(user.getRole()==0) {
-	            	System.out.println("·Î±×ÀÎ¼º°ø(°ü¸®ÀÚ)"); 
+	            	System.out.println("ë¡œê·¸ì¸ì„±ê³µ(ê´€ë¦¬ì)"); 
 		            return "redirect:adminMain.jsp";
 	        	}
-	            System.out.println("·Î±×ÀÎ¼º°ø post"); 
-	            System.out.println(user.getName()+"´Ô È¯¿µÇÕ´Ï´Ù. ");
+	            System.out.println("ë¡œê·¸ì¸ì„±ê³µ post"); 
+	            System.out.println(user.getName()+"ë‹˜ í™˜ì˜í•©ë‹ˆë‹¤. ");
 	            return "redirect:index.jsp";
 	        }else {
-	        	System.out.println("·Î±×ÀÎ½ÇÆĞ");
+	        	System.out.println("ë¡œê·¸ì¸ì‹¤íŒ¨");
 	            return "redirect:login.jsp";
 	        }
 	  }
@@ -134,7 +134,7 @@ public class UserController extends HttpServlet{
 	   
 	   
 
-	 //·Î±×¾Æ¿ôÃ³¸®
+	 //ë¡œê·¸ì•„ì›ƒì²˜ë¦¬
 	  @RequestMapping(value="logout.do")
 	  public String logout(UserVO vo, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		  System.out.println("Controller >> logout");
@@ -149,10 +149,10 @@ public class UserController extends HttpServlet{
 	          session.removeAttribute("UserInfo"); 
 	          session.invalidate();
 	          
-	          //ÀÚµ¿·Î±×ÀÎÀ» ÇÑ »óÅÂÀÇ »ç¿ëÀÚ°¡ ·Î±×¾Æ¿ôÀ» ÇÒ °æ¿ì
+	          //ìë™ë¡œê·¸ì¸ì„ í•œ ìƒíƒœì˜ ì‚¬ìš©ìê°€ ë¡œê·¸ì•„ì›ƒì„ í•  ê²½ìš°
 	          Cookie cookie = WebUtils.getCookie(request,"loginCookie");
 	          if(cookie != null) {
-	        	  System.out.println("ÀÚµ¿·Î±×ÀÎÀ» ÇÑ »óÅÂÀÇ »ç¿ëÀÚ°¡ ·Î±×¾Æ¿ôÀ» ÇÒ °æ¿ì");
+	        	  System.out.println("ìë™ë¡œê·¸ì¸ì„ í•œ ìƒíƒœì˜ ì‚¬ìš©ìê°€ ë¡œê·¸ì•„ì›ƒì„ í•  ê²½ìš°");
 	        	  cookie.setPath("/");
 	              cookie.setMaxAge(0);
 	              response.addCookie(cookie);
@@ -191,12 +191,12 @@ public class UserController extends HttpServlet{
 	
 	/*
 	 * @RequestMapping(value = "login.do", method = RequestMethod.GET) public String
-	 * loginView(UserVO vo) { System.out.println("·Î±×ÀÎ È­¸éÀ¸·Î ÀÌµ¿"); vo.setId("test");
+	 * loginView(UserVO vo) { System.out.println("ë¡œê·¸ì¸ í™”ë©´ìœ¼ë¡œ ì´ë™"); vo.setId("test");
 	 * vo.setPw("test1234"); return "login.jsp"; }
 	 * 
 	 * @RequestMapping(value = "login.do", method = RequestMethod.POST) public
 	 * String login(UserVO vo, HttpSession session, HttpServletRequest request) {
-	 * System.out.println("·Î±×ÀÎ ÀÎÁõ Ã³¸®...");
+	 * System.out.println("ë¡œê·¸ì¸ ì¸ì¦ ì²˜ë¦¬...");
 	 * 
 	 * session = request.getSession(); session.setAttribute("userVO", vo);
 	 * 

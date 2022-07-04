@@ -8,7 +8,7 @@ public class UserVO {
 	private String name;
 	private int role;
 	
-	private boolean autoLogin; //»ç¿ëÀÚ°¡ ·Î±×ÀÎÀ» ÇÒ¶§ ÀÚµ¿·Î±×ÀÎ Ã¼Å©¹Ú½º¸¦ Å¬¸¯Çß´ÂÁö ¾ÈÇß´ÂÁö¿¡ ´ëÇÑ ³í¸®°ª
+	private boolean autoLogin; //ì‚¬ìš©ìê°€ ë¡œê·¸ì¸ì„ í• ë•Œ ìë™ë¡œê·¸ì¸ ì²´í¬ë°•ìŠ¤ë¥¼ í´ë¦­í–ˆëŠ”ì§€ ì•ˆí–ˆëŠ”ì§€ì— ëŒ€í•œ ë…¼ë¦¬ê°’
 	private String sessionId;
 	private Date limitDate;
 	

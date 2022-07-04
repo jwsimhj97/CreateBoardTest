@@ -17,8 +17,8 @@ public interface UserService {
 	int deleteUser(UserVO vo);
 
 	
-	void autoLogin(Map<String,Object> map); //Æ¯Á¤ È¸¿øÀÇ ¼¼¼Ç¾ÆÀÌµğ¿Í ÄíÅ° À¯È¿±â°£À» ÀúÀå
-	void autoLogin(String sessionId, Date limitDate, String id, String name); //Æ¯Á¤ È¸¿øÀÇ ¼¼¼Ç¾ÆÀÌµğ¿Í ÄíÅ° À¯È¿±â°£À» ÀúÀå
-	UserVO selectSession(String sessionId);//¼¼¼Ç¾ÆÀÌµğ·Î È¸¿øÁ¶È¸
+	void autoLogin(Map<String,Object> map); //íŠ¹ì • íšŒì›ì˜ ì„¸ì…˜ì•„ì´ë””ì™€ ì¿ í‚¤ ìœ íš¨ê¸°ê°„ì„ ì €ì¥
+	void autoLogin(String sessionId, Date limitDate, String id, String name); //íŠ¹ì • íšŒì›ì˜ ì„¸ì…˜ì•„ì´ë””ì™€ ì¿ í‚¤ ìœ íš¨ê¸°ê°„ì„ ì €ì¥
+	UserVO selectSession(String sessionId);//ì„¸ì…˜ì•„ì´ë””ë¡œ íšŒì›ì¡°íšŒ
 
 }

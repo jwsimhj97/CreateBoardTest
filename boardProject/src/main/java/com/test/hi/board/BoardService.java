@@ -3,19 +3,19 @@ package com.test.hi.board;
 import java.util.List;
 
 public interface BoardService {
-	//±Ûµî·Ï
+	//ê¸€ë“±ë¡
 	void insertBoard(BoardVO vo);
 	
-	//±Û¼öÁ¤
+	//ê¸€ìˆ˜ì •
 	void updateBoard(BoardVO vo);
 	
-	//±Û»èÁ¦
+	//ê¸€ì‚­ì œ
 	void deleteBoard(BoardVO vo);
 	
-	//±Û»ó¼¼ Á¶È¸
+	//ê¸€ìƒì„¸ ì¡°íšŒ
 	BoardVO getBoard(BoardVO vo);
 	
-	//±Û¸ñ·Ï Á¶È¸
+	//ê¸€ëª©ë¡ ì¡°íšŒ
 	List<BoardVO> getBoardList(BoardVO vo);
 	
 }

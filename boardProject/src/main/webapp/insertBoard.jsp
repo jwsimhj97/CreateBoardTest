@@ -13,7 +13,7 @@
 	<div class="container contents">
 	
 		<div class="commonBoardBox">
-			<form action="insertBoard.do" method="post" enctype="multipart/form-data">
+			<form action="insertBoardPage.do" method="post" enctype="multipart/form-data">
 			    <div class="inputBox">
 			      <div class="title">
 			        <span class="tit">제목</span>

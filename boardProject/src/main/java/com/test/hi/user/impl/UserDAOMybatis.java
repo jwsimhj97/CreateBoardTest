@@ -17,28 +17,28 @@ public class UserDAOMybatis {
 	private SqlSessionTemplate mybatis;
 
 	public UserVO getUser(UserVO vo) {
-		System.out.println("===> JDBC·Î getUser() ±â´É Ã³¸®");
+		System.out.println("===> JDBCë¡œ getUser() ê¸°ëŠ¥ ì²˜ë¦¬");
 		return (UserVO) mybatis.selectOne("UserDAO.getUser", vo);
 	}
 	
 	public List<UserVO> getUserList(UserVO vo) {
-			System.out.println("===> JDBC·Î getUserList() ±â´É Ã³¸®");
+			System.out.println("===> JDBCë¡œ getUserList() ê¸°ëŠ¥ ì²˜ë¦¬");
 			return mybatis.selectList("UserDAO.getUserList", vo);		
 	}
 	
 	
 	public int insertUser(UserVO vo) {
-		System.out.println("===> JDBC·Î insertUser() ±â´É Ã³¸®");
+		System.out.println("===> JDBCë¡œ insertUser() ê¸°ëŠ¥ ì²˜ë¦¬");
 		return mybatis.insert("UserDAO.insertUser", vo);
 	}
 	
 	public int updateUser(UserVO vo) {
-		System.out.println("===> JDBC·Î updateUser() ±â´É Ã³¸®");
+		System.out.println("===> JDBCë¡œ updateUser() ê¸°ëŠ¥ ì²˜ë¦¬");
 		return mybatis.update("UserDAO.updateUser", vo);
 	}
 	
 	public int deleteUser(UserVO vo) {
-		System.out.println("===> JDBC·Î deleteUser() ±â´É Ã³¸®");
+		System.out.println("===> JDBCë¡œ deleteUser() ê¸°ëŠ¥ ì²˜ë¦¬");
 		return mybatis.delete("UserDAO.deleteUser", vo);
 	}
 	

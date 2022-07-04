@@ -14,34 +14,34 @@ public class BoardDAOMybatis {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
-	//±Ûµî·Ï
+		//ê¸€ë“±ë¡
 		public void insertBoard(BoardVO vo) {
-			System.out.println("===>JDBC·Î insertBoard() ±â´ÉÃ³¸®");
+			System.out.println("===>JDBCï¿½ï¿½ insertBoard() ï¿½ï¿½ï¿½Ã³ï¿½ï¿½");
 			mybatis.insert("BoardDAO.insertBoard", vo);
 		}
 		
-		//±Û¼öÁ¤
+		//ê¸€ìˆ˜ì •
 		public void updateBoard(BoardVO vo) {
-			System.out.println("===>JDBC·Î updateBoard() ±â´ÉÃ³¸®");
+			System.out.println("===>JDBCï¿½ï¿½ updateBoard() ï¿½ï¿½ï¿½Ã³ï¿½ï¿½");
 			mybatis.update("BoardDAO.updateBoard", vo);
 		}
 		
-		//±Û»èÁ¦
+		//ê¸€ì‚­ì œ
 		public void deleteBoard(BoardVO vo) {
-			System.out.println("===>JDBC·Î deleteBoard() ±â´ÉÃ³¸®");
+			System.out.println("===>JDBCï¿½ï¿½ deleteBoard() ï¿½ï¿½ï¿½Ã³ï¿½ï¿½");
 			mybatis.delete("BoardDAO.deleteBoard", vo);
 		}
 		
-		//±Û»ó¼¼ Á¶È¸
+		//ê¸€ìƒì„¸ ì¡°íšŒ
 		public BoardVO getBoard(BoardVO vo) {
-			System.out.println("===>JDBC·Î getBoard() ±â´ÉÃ³¸®");
+			System.out.println("===>JDBCï¿½ï¿½ getBoard() ï¿½ï¿½ï¿½Ã³ï¿½ï¿½");
 			/* mybatis.update("BoardDAO.updateCnt", vo); */
 			return (BoardVO) mybatis.selectOne("BoardDAO.getBoard", vo);
 		}
 		
-		//±Û¸ñ·Ï Á¶È¸
+		//ê¸€ëª©ë¡ ì¡°íšŒ
 		public List<BoardVO> getBoardList(BoardVO vo) {
-			System.out.println("===>JDBC·Î getBoardList() ");
+			System.out.println("===>JDBCï¿½ï¿½ getBoardList() ");
 			
 			return mybatis.selectList("BoardDAO.getBoardList", vo);
 		}

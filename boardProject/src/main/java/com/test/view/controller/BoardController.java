@@ -32,14 +32,14 @@ public class BoardController {
 	@Autowired
 	private UserService userService;
 	
-	String realPath = "/resources/" ;
+	String realPath = "C:/Sim/CreateBoardTest/boardProject/src/main/webapp/img";
 	
-	// ±Û ÀÛ¼º¿Ï·á
-	// ÆÄÀÏ ¾÷·Îµå Ã³¸®¶§¹®ÀÎ°ÍÀ¸·Î ÆÇ´ÜµÇ°íÀÖÀ½
+	// ê¸€ ì‘ì„±ì™„ë£Œ
+	// íŒŒì¼ ì—…ë¡œë“œ ì²˜ë¦¬ë•Œë¬¸ì¸ê²ƒìœ¼ë¡œ íŒë‹¨ë˜ê³ ìˆìŒ
 		@RequestMapping(value = "/insertBoard.do", method=RequestMethod.POST)
 		public String insertBoard(UserVO vo, BoardVO bvo, MultipartHttpServletRequest request) throws IOException{
-			System.out.println("±Ûµî·Ï¿Ï·áÇÏ°í °Ô½ÃÆÇÀ¸·Î ÀÌµ¿ÇÔ...1");
-			//ÆÄÀÏ ¾÷·Îµå Ã³¸® 
+			System.out.println("ê¸€ë“±ë¡ì™„ë£Œí•˜ê³  ê²Œì‹œíŒìœ¼ë¡œ ì´ë™í•¨...1");
+			//íŒŒì¼ ì—…ë¡œë“œ ì²˜ë¦¬ 
 			MultipartFile uploadFile = bvo.getUploadFile();
 			
 			if(!uploadFile.isEmpty()) {
@@ -47,21 +47,32 @@ public class BoardController {
 				
 				File file = new File(realPath+fileName);
 				bvo.setFile_name(fileName);
+				System.out.println("ê¸€ë“±ë¡ì™„ë£Œí•˜ê³  ê²Œì‹œíŒìœ¼ë¡œ ì´ë™í•¨...2");
 				if(!file.exists()) {
 					file.mkdirs();
-					System.out.println("±Ûµî·Ï¿Ï·áÇÏ°í °Ô½ÃÆÇÀ¸·Î ÀÌµ¿ÇÔ...2");
+					System.out.println("ê¸€ë“±ë¡ì™„ë£Œí•˜ê³  ê²Œì‹œíŒìœ¼ë¡œ ì´ë™í•¨...3");
 				}
 				uploadFile.transferTo(file);
 			}
 
 			
 			boardService.insertBoard(bvo);
-			System.out.println("±Ûµî·Ï¿Ï·áÇÏ°í °Ô½ÃÆÇÀ¸·Î ÀÌµ¿ÇÔ...3");
+			System.out.println("ê¸€ë“±ë¡ì™„ë£Œí•˜ê³  ê²Œì‹œíŒìœ¼ë¡œ ì´ë™í•¨...3");
 			return "getBoardList.do";
 		}
 		
+		// ê¸€ ë“±ë¡í˜ì´ì§€ ì´ë™í•˜ê¸°
+		@RequestMapping(value = "/insertBoardPage.do")
+		public String InsertInq(UserVO vo, BoardVO boardVo, HttpServletRequest request) throws Exception{
+			System.out.println("ë“±ë¡í˜ì´ì§€ ì´ë™í•¨...1");
+			vo.setId((String) request.getSession().getAttribute("UserInfo"));
+			System.out.println("ë“±ë¡í˜ì´ì§€ ì´ë™í•¨...2");
+			
+			return "/insertBoard.do";
+		}
+		
 	
-	// ±Û ¼öÁ¤
+	// ê¸€ ìˆ˜ì •
 		@RequestMapping("/updateBoard.do")
 		public String updateBoard(@ModelAttribute("board") BoardVO vo, HttpSession session) {
 			if( vo.getUser_name().equals(session.getAttribute("user_name").toString()) ){
@@ -73,12 +84,12 @@ public class BoardController {
 			
 		}
 
-		// ±Û »èÁ¦
+		// ê¸€ ì‚­ì œ
 		@RequestMapping("/deleteBoard.do")
 		public String deleteBoard(@ModelAttribute("board") BoardVO vo, HttpSession session) {
 			if( vo.getUser_name().equals(session.getAttribute("user_name").toString()) ) {
 				if(vo.getFile_name()!=null) {
-					System.out.println("ÆÄÀÏ»èÁ¦: "+realPath + vo.getFile_name());
+					System.out.println("íŒŒì¼ì‚­ì œ: "+realPath + vo.getFile_name());
 					File f = new File(realPath + vo.getFile_name());		
 					f.delete();
 				}
@@ -87,7 +98,7 @@ public class BoardController {
 			return "getBoardList.do";
 		}
 
-		// ±Û »ó¼¼ Á¶È¸
+		// ê¸€ ìƒì„¸ ì¡°íšŒ
 		@RequestMapping("/getBoard.do")
 		public String getBoard(BoardVO vo, Model model) {
 			model.addAttribute("board", boardService.getBoard(vo));
@@ -95,32 +106,32 @@ public class BoardController {
 			return "getBoard.jsp";
 		}
 
-		// ±Û ¸ñ·Ï
+		// ê¸€ ëª©ë¡
 		@RequestMapping("/getBoardList.do")
 		public String getBoardListPost(UserVO vo, BoardVO bvo, Model model, HttpServletRequest request) {
-			System.out.println("±Û ¸ñ·Ï ÆäÀÌÁö...1");
+			System.out.println("ê¸€ ëª©ë¡ í˜ì´ì§€...1");
 			
 			model.addAttribute("boardList", boardService.getBoardList(bvo));
-			System.out.println("±Û ¸ñ·Ï ÆäÀÌÁö...2");
+			System.out.println("ê¸€ ëª©ë¡ í˜ì´ì§€...2");
 			
 			vo.setName((String) request.getSession().getAttribute("UserInfo"));
-			System.out.println("±Û ¸ñ·Ï ÆäÀÌÁö...3");
+			System.out.println("ê¸€ ëª©ë¡ í˜ì´ì§€...3");
 			return "getBoardList.jsp";
 		}
 		
 		@RequestMapping(value="/download.do", method=RequestMethod.GET)
 	    public void fileDownLoad(@RequestParam(value="file_name",defaultValue = "", required=false) String file_name, HttpServletRequest request, HttpServletResponse response) throws IOException {
-			System.out.println("ÆÄÀÏ ´Ù¿î·Îµå");
+			System.out.println("íŒŒì¼ ë‹¤ìš´ë¡œë“œ");
 			if (!file_name.equals("")) {
-		        //(2) ¿äÃ»ÆÄÀÏ Á¤º¸ ºÒ·¯¿À±â
+		        //(2) ìš”ì²­íŒŒì¼ ì •ë³´ ë¶ˆëŸ¬ì˜¤ê¸°
 		        File file = new File(realPath+file_name);
 		
-				// ÇÑ±ÛÀº http Çì´õ¿¡ »ç¿ëÇÒ ¼ö ¾ø±â ¶§¹®¿¡ ÆÄÀÏ¸íÀº ¿µ¹®À¸·Î ÀÎÄÚµùÇÏ¿© Çì´õ¿¡ Àû¿ëÇÑ´Ù
+				// í•œê¸€ì€ http í—¤ë”ì— ì‚¬ìš©í•  ìˆ˜ ì—†ê¸° ë•Œë¬¸ì— íŒŒì¼ëª…ì€ ì˜ë¬¸ìœ¼ë¡œ ì¸ì½”ë”©í•˜ì—¬ í—¤ë”ì— ì ìš©í•œë‹¤
 				String fn = new String(file.getName().getBytes(), "iso_8859_1");
 				System.out.println("fn: "+fn);
 		
 				
-				//(3) ContentType¼³Á¤
+				//(3) ContentTypeì„¤ì •
 				byte[] bytes = org.springframework.util.FileCopyUtils.copyToByteArray(file);
 				response.setHeader("Content-Disposition", "attachment; file_name=\""+ fn + "\"");
 				response.setContentLength(bytes.length);
